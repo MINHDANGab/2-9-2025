@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quốc khánh 2/9 — Việt Nam</title>
+<style>
+  :root{ --gold:#f7d047; --red:#d80b0b; }
+
+  *{box-sizing:border-box} html,body{height:100%}
+  body{
+    margin:0; color:#e8f0ff;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    background:url("pictures/anh den trang.png") center/cover no-repeat fixed;
+    overflow:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:0;
+    background:linear-gradient(120deg, rgba(0,0,0,.55), rgba(0,0,0,.55));
+    pointer-events:none;
+  }
+
+  /* Sao lấp lánh */
+  .stars,.stars::after{
+    position:fixed; inset:0; pointer-events:none; z-index:1;
+    background:
+      radial-gradient(2px 2px at 20% 30%, #fff8, transparent 40%),
+      radial-gradient(1.5px 1.5px at 70% 20%, #fff6, transparent 35%),
+      radial-gradient(1.5px 1.5px at 40% 70%, #fff5, transparent 35%),
+      radial-gradient(2px 2px at 85% 60%, #fff7, transparent 40%),
+      radial-gradient(1px 1px at 55% 45%, #fff6, transparent 30%);
+    animation: twinkle 6s linear infinite; filter: drop-shadow(0 0 4px #ffffff40);
+  }
+  .stars::after{content:"";animation-delay:-3s;opacity:.6}
+  @keyframes twinkle{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+  .wrap{ position:relative; z-index:2; height:100%; display:grid; place-items:center; padding:clamp(16px,2.5vw,32px); }
+
+  .title{ text-align:center; line-height:1.1; user-select:none; margin-bottom:clamp(12px,2vh,24px); text-shadow:0 2px 8px rgba(0,0,0,.35); }
+  .title .top{ font-size:clamp(18px,2.2vw,26px); letter-spacing:.18em; opacity:.95 }
+  .title h1{
+    margin:.15em 0 .2em; font-size:clamp(44px,7.5vw,92px); font-weight:800;
+    background:linear-gradient(90deg,#ffedd5,#fff7a8,#ffe08a,#ffd54a,#fff7a8);
+    background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:0 0 24px #ffd54a33; animation:shine 9s ease-in-out infinite;
+  }
+  .title .sub{ font-size:clamp(16px,2vw,22px); letter-spacing:.12em; opacity:.95 }
+  @keyframes shine{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+  /* Bố cục 2 cột */
+  .hero {
+  position: relative;
+  /* rộng tối đa 1280px hoặc 90vw (tùy màn hình nhỏ hơn) */
+  width: min(1280px, 90vw);
+  display: grid;
+  /* cột trái chiếm 2 phần, cột phải 1 phần */
+  grid-template-columns: 2fr 1fr;
+  gap: clamp(16px, 3vw, 32px);
+  align-items: center;
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+  /* Card ảnh màu (bên trái) */
+  .card{ position:relative; border-radius:24px; padding:clamp(14px,2vw,20px);
+         background:linear-gradient(180deg,#ffffff18,#ffffff0a);
+         border:1px solid #ffffff33;
+         box-shadow:0 10px 30px #0008, inset 0 1px 0 #ffffff33, inset 0 -1px 0 #00000044;
+         overflow:hidden; backdrop-filter:blur(2px); }
+  .photo{ aspect-ratio:16/9; border-radius:14px; overflow:hidden;
+          border:2px solid #00000033; box-shadow:inset 0 0 30px #00000040, 0 25px 40px #0009; }
+  .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* Cột phải */
+  .right{ align-self:stretch; display:grid; gap:clamp(14px,2vw,22px); }
+
+  /* Ô TRÊN: Quốc kỳ Việt Nam (tỉ lệ 2:3) */
+  .flag{
+    border-radius:22px; padding:0; overflow:hidden;
+    border:1px solid #ffffff22; box-shadow:inset 0 1px 0 #ffffff22, 0 20px 40px #0006;
+    background:#8b0000; /* nền tối để viền nổi */
+  }
+  .flag-inner{
+    aspect-ratio:3/2; width:100%;
+    background:var(--red);
+    position:relative;
+    display:block;
+  }
+  /* Ngôi sao vàng 5 cánh chính giữa – đúng hình, theo clip-path */
+  .flag-inner::after{
+    content:""; position:absolute; left:50%; top:50%; width:40%; aspect-ratio:1/1;
+    transform:translate(-50%,-50%) rotate(0.0001turn);
+    background:var(--gold);
+    /* vẽ sao: 5 cánh chuẩn */
+    clip-path:polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%,
+                      79% 91%, 50% 70%, 21% 91%, 32% 57%,
+                      2% 35%, 39% 35%);
+    filter:drop-shadow(0 0 10px #ffd54a66);
+  }
+
+  /* Ô DƯỚI: Trình phát nhạc */
+  .player{
+    border-radius:22px; background:linear-gradient(180deg,#ffffff10,#ffffff05);
+    border:1px solid #ffffff22; backdrop-filter:blur(2px);
+    padding:clamp(14px,2vw,20px); display:grid; gap:10px;
+  }
+  .title-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .track-title{ margin:0; font-size:clamp(16px,2.2vw,22px); letter-spacing:.06em; text-align:left }
+  .time{ font-variant-numeric: tabular-nums; opacity:.85 }
+
+  .controls{ display:flex; align-items:center; gap:10px; justify-content:center; }
+  .btn{
+    border:none; border-radius:12px; padding:10px 12px; cursor:pointer; font-weight:700;
+    background:linear-gradient(180deg,#ffe27a,#ffc84a); color:#3b2f00;
+    box-shadow:0 6px 16px #0006, inset 0 1px 0 #fff8;
+    min-width:44px;
+  }
+  .btn:active{ transform:translateY(1px) }
+
+  .range{ -webkit-appearance:none; appearance:none; width:100%; height:8px; border-radius:999px; background:#ffffff33; outline:none; }
+  .range::-webkit-slider-thumb{ -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:#fff; box-shadow:0 0 0 2px #0004; cursor:pointer }
+  .row{ display:flex; align-items:center; gap:10px }
+  .grow{ flex:1 }
+  .vol{ width:120px }
+
+  /* Pháo hoa */
+  .sky{ position:fixed; inset:0; pointer-events:none; z-index:3; overflow:hidden }
+  .firework,.firework::before,.firework::after{
+    --size:.5vmin; position:absolute; left:var(--x); top:var(--y);
+    width:var(--size); height:var(--size); border-radius:50%; content:""; background:transparent;
+    box-shadow:
+      0 -8vmin #ffffff, 6vmin -6vmin #ffd54a, 8.5vmin 0 #ffbe3b, 6vmin 6vmin #d80b0b,
+      0 8vmin #ffd54a, -6vmin 6vmin #ff3b3b, -8.5vmin 0 #ffd54a, -6vmin -6vmin #d80b0b,
+      0 -4vmin #ffffff, 3vmin -3vmin #ffd54a, 4.2vmin 0 #ffbe3b, 3vmin 3vmin #d80b0b,
+      0 4vmin #ffd54a, -3vmin 3vmin #ff3b3b, -4.2vmin 0 #ffd54a, -3vmin -3vmin #d80b0b;
+    transform:translate(-50%,-50%) scale(.2); animation:explode var(--t) ease-out infinite var(--d);
+    filter:drop-shadow(0 0 6px #ffd54aAA);
+  }
+  .firework::before{ transform:translate(-50%,-50%) rotate(30deg) scale(.2) }
+  .firework::after { transform:translate(-50%,-50%) rotate(60deg) scale(.2) }
+  .firework::before,.firework::after{ animation:explode var(--t) ease-out infinite calc(var(--d) + .1s) }
+  @keyframes explode{ 0%{opacity:0;transform:translate(-50%,-50%) scale(.15)} 10%{opacity:1;transform:translate(-50%,-50%) scale(.9)} 55%{opacity:1;transform:translate(-50%,-50%) scale(1)} 100%{opacity:0;transform:translate(-50%,-50%) scale(1.05)} }
+</style>
+</head>
+<body>
+  <div class="stars"></div>
+
+  <div class="wrap">
+    <div class="title">
+      <div class="top">VIỆT NAM</div>
+      <h1>QUỐC KHÁNH 2/9</h1>
+      <div class="sub">Độc lập · Tự do · Hạnh phúc</div>
+    </div>
+
+    <div class="hero">
+      <!-- BÊN TRÁI: Ảnh MÀU -->
+      <div class="card">
+        <figure class="photo">
+          <img src="pictures/anh mau.jpg" alt="Bác Hồ đọc Tuyên ngôn Độc lập (ảnh màu)">
+        </figure>
+      </div>
+
+      <!-- BÊN PHẢI -->
+      <div class="right">
+        <!-- Ô TRÊN: QUỐC KỲ -->
+        <div class="flag">
+          <div class="flag-inner"></div>
+        </div>
+
+        <!-- Ô DƯỚI: TRÌNH PHÁT NHẠC -->
+        <div class="player">
+          <div class="title-row">
+            <h3 class="track-title" id="trackTitle">Đang tải…</h3>
+            <div class="time"><span id="cur">0:00</span> / <span id="dur">0:00</span></div>
+          </div>
+
+          <input id="seek" class="range grow" type="range" min="0" max="1000" value="0" step="1" aria-label="Thanh tiến độ">
+
+          <div class="controls">
+            <button id="prev" class="btn" title="Bài trước">⏮</button>
+            <button id="play" class="btn" title="Phát/Tạm dừng">▶️</button>
+            <button id="next" class="btn" title="Bài tiếp">⏭</button>
+          </div>
+
+          <div class="row">
+            <label for="vol" style="opacity:.85">Âm lượng</label>
+            <input id="vol" class="range vol" type="range" min="0" max="1" value="0.9" step="0.01">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pháo hoa -->
+  <div class="sky">
+    <div class="firework" style="--x:18vw; --y:22vh; --t:2.1s; --d:.1s;"></div>
+    <div class="firework" style="--x:35vw; --y:14vh; --t:2.3s; --d:.5s;"></div>
+    <div class="firework" style="--x:58vw; --y:18vh; --t:2.0s; --d:.2s;"></div>
+    <div class="firework" style="--x:78vw; --y:24vh; --t:2.4s; --d:.3s;"></div>
+    <div class="firework" style="--x:72vw; --y:42vh; --t:2.2s; --d:.7s;"></div>
+    <div class="firework" style="--x:50vw; --y:36vh; --t:2.1s; --d:.9s;"></div>
+    <div class="firework" style="--x:28vw; --y:40vh; --t:2.5s; --d:.4s;"></div>
+    <div class="firework" style="--x:13vw; --y:35vh; --t:2.0s; --d:.8s;"></div>
+  </div>
+
+  <!-- Audio ẩn (điều khiển bằng JS) -->
+  <audio id="audio" preload="metadata"></audio>
+
+<script>
+  // ======= PLAYLIST =======
+  // Thêm bài vào đây: src (đường dẫn mp3), title (tên hiển thị)
+  const playlist = [
+    { src: "music/nha-toi-co-treo-mot-la-co.mp3", title: "NHÀ TÔI CÓ TREO MỘT LÁ CỜ" },
+    { src: "music/y2mate--CÒN-GÌ-ĐẸP-HƠN-ca-khúc-lấy-cảm-hứng-từ.mp3", title: "CÒN GÌ ĐẸP HƠN" }
+    
+  ];
+
+  // ======= ELEMENTS =======
+  const audio = document.getElementById('audio');
+  const titleEl = document.getElementById('trackTitle');
+  const btnPlay = document.getElementById('play');
+  const btnPrev = document.getElementById('prev');
+  const btnNext = document.getElementById('next');
+  const seek = document.getElementById('seek');
+  const cur = document.getElementById('cur');
+  const dur = document.getElementById('dur');
+  const vol = document.getElementById('vol');
+
+  let index = 0;
+  let seekingByUser = false;
+
+  function fmt(t){
+    if (!isFinite(t)) return "0:00";
+    const m = Math.floor(t/60);
+    const s = Math.floor(t%60).toString().padStart(2,'0');
+    return `${m}:${s}`;
+  }
+
+  function load(i){
+    index = (i + playlist.length) % playlist.length;
+    const track = playlist[index];
+    audio.src = track.src;
+    titleEl.textContent = track.title;
+    audio.load();
+  }
+
+  function play(){
+  audio.play().catch(()=>{});
+  btnPlay.textContent = "⏸";
+  btnPlay.title = "Tạm dừng";
+  btnPlay.style.color = "black";  // icon tạm dừng màu đen
+}
+
+function pause(){
+  audio.pause();
+  btnPlay.textContent = "▶️";
+  btnPlay.title = "Phát";
+  btnPlay.style.color = "black";  // icon phát màu đen
+}
+
+  // Init
+  load(0);
+
+  // Events
+  btnPlay.addEventListener('click', ()=> audio.paused ? play() : pause());
+  btnPrev.addEventListener('click', ()=>{ load(index-1); play(); });
+  btnNext.addEventListener('click', ()=>{ load(index+1); play(); });
+
+  audio.addEventListener('loadedmetadata', ()=>{
+    dur.textContent = fmt(audio.duration);
+    seek.value = 0;
+  });
+
+  audio.addEventListener('timeupdate', ()=>{
+    if (!seekingByUser && isFinite(audio.duration)) {
+      seek.value = Math.floor((audio.currentTime / audio.duration) * 1000);
+    }
+    cur.textContent = fmt(audio.currentTime);
+    dur.textContent = fmt(audio.duration);
+  });
+
+  seek.addEventListener('input', ()=>{ seekingByUser = true; });
+  seek.addEventListener('change', ()=>{
+    if (isFinite(audio.duration)) {
+      const t = (seek.value/1000) * audio.duration;
+      audio.currentTime = t;
+    }
+    seekingByUser = false;
+  });
+
+  vol.addEventListener('input', ()=>{ audio.volume = Number(vol.value); });
+  audio.volume = Number(vol.value);
+
+  audio.addEventListener('ended', ()=>{ btnNext.click(); });
+
+  // Phím tắt: Space play/pause, J/L tua 10s, K = pause/play
+  window.addEventListener('keydown', (e)=>{
+    if (['INPUT','TEXTAREA','SELECT','BUTTON'].includes(e.target.tagName)) return;
+    if (e.code === 'Space' || e.key.toLowerCase()==='k'){ e.preventDefault(); btnPlay.click(); }
+    if (e.key.toLowerCase()==='j'){ audio.currentTime = Math.max(0, audio.currentTime-10); }
+    if (e.key.toLowerCase()==='l'){ audio.currentTime = Math.min(audio.duration||0, audio.currentTime+10); }
+    if (e.key === 'ArrowLeft') btnPrev.click();
+    if (e.key === 'ArrowRight') btnNext.click();
+  });
+</script>
+</body>
+</html>
